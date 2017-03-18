@@ -49,7 +49,7 @@
     "bitcoin api",
     "blockchain api",
     "json",
-    "bitcore"
+    "litecore"
   ],
   "engines": {
     "node": ">=0.12.0"
@@ -61,8 +61,8 @@
   "bitcoreNode": "lib",
   "dependencies": {
     "async": "*",
-    "bitcore-lib": "^0.13.7",
-    "bitcore-message": "^1.0.1",
+    "litecore-lib": "^0.13.19",
+    "litecore-message": "^1.0.4",
     "body-parser": "^1.13.3",
     "compression": "^1.6.1",
     "lodash": "^2.4.1",
