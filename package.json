@@ -1,7 +1,7 @@
 {
   "name": "insight-lite-api",
   "description": "A Litecoin blockchain REST and web socket API service for Litecore Node.",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "repository": "git://github.com/litecoin-project/insight-lite-api.git",
   "contributors": [
     {
@@ -61,8 +61,8 @@
   "bitcoreNode": "lib",
   "dependencies": {
     "async": "*",
-    "litecore-lib": "^0.13.19",
-    "litecore-message": "^1.0.4",
+    "litecore-lib": "^0.13.22",
+    "litecore-message": "^1.0.5",
     "body-parser": "^1.13.3",
     "compression": "^1.6.1",
     "lodash": "^2.4.1",
