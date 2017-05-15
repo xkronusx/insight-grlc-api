@@ -50,5 +50,12 @@
 	  	"searchStrings": [
 		  	"/ViaLTC/"
 		]
+	},
+	{
+		"poolName": "TBDice",
+		"url": "http://ltc.tbdice.org/",
+		"searchStrings": [
+			"TBDice"
+		]
 	}
 ]
