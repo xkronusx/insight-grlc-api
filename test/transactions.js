@@ -25,7 +25,7 @@ describe('Transactions', function() {
               'hex': '47304402203ddb49db43074b421ec6d5604ae91aac37f4715139e0c83ea1145379e8cbf02702207fbc92c4038ad501989b097844ae4e337c9388f0713110620b40e582b85fdff3012102cd90aa18ec8e3b35c0447ffc713c945cb837429d33d075d1b0f050c72ea838d2',
               'asm': '304402203ddb49db43074b421ec6d5604ae91aac37f4715139e0c83ea1145379e8cbf02702207fbc92c4038ad501989b097844ae4e337c9388f0713110620b40e582b85fdff301 02cd90aa18ec8e3b35c0447ffc713c945cb837429d33d075d1b0f050c72ea838d2'
             },
-            'addr': '1NqgMfGUeELP2BfxD4hQuJSRq2d3DVJcCi',
+            'addr': 'Lh4dcsaJitaSGzN7PCgiBKWC3EzKMFyHyK',
             'valueSat': 1546063700,
             'value': 15.460637,
             'doubleSpentTxID': null,
@@ -42,7 +42,7 @@ describe('Transactions', function() {
               'hex': '76a914bc345e0e0e5b0dbddb7b35ef3430fedd528dd1b788ac',
               'asm': 'OP_DUP OP_HASH160 bc345e0e0e5b0dbddb7b35ef3430fedd528dd1b7 OP_EQUALVERIFY OP_CHECKSIG',
               'addresses': [
-                '1JA8mcfrBv1YYsASAp9jtohm8x2q7LnUhs'
+                'LcP62pygGaFbofrbLx93ApmXMAQ7ALgh3v'
               ],
               'type': 'pubkeyhash'
             },
@@ -57,7 +57,7 @@ describe('Transactions', function() {
               'hex': '76a914c2c74d7519d4425fc1a253f066d980164341554a88ac',
               'asm': 'OP_DUP OP_HASH160 c2c74d7519d4425fc1a253f066d980164341554a OP_EQUALVERIFY OP_CHECKSIG',
               'addresses': [
-                '1Jktr121Hm63qtWBMV8dCNJNW2KtWXy4fp'
+                'Lcyr7DKqNRL76hCLXd7vUPN8iEhAbRRW51'
               ],
               'type': 'pubkeyhash'
             },
@@ -187,7 +187,7 @@ describe('Transactions', function() {
                   'hex': '41047211a824f55b505228e4c3d5194c1fcfaa15a456abdf37f9b9d97a4040afc073dee6c89064984f03385237d92167c13e236446b417ab79a0fcae412ae3316b77ac',
                   'asm': '047211a824f55b505228e4c3d5194c1fcfaa15a456abdf37f9b9d97a4040afc073dee6c89064984f03385237d92167c13e236446b417ab79a0fcae412ae3316b77 OP_CHECKSIG',
                   'addresses': [
-                    '1HLoD9E4SDFFPDiYfNYnkBLQ85Y51J3Zb1'
+                    'LbZkUMXtWsVJe2QhqWY62CQALHuM5Yjv1b'
                   ],
                   'type': 'pubkeyhash'
                 },
@@ -273,7 +273,7 @@ describe('Transactions', function() {
                   'hex': '76a914ad7309dfc032d7f6b652e0c29ee353e63fffec6688ac',
                   'asm': 'OP_DUP OP_HASH160 ad7309dfc032d7f6b652e0c29ee353e63fffec66 OP_EQUALVERIFY OP_CHECKSIG',
                   'addresses': [
-                    '1Gp7iCzDGMZiV55Kt8uKsux6VyoHe1aJaN'
+                    'Lb34yRJ3M1omjsmV4Gtd9w1riCAZo3zNvd'
                   ],
                   'type': 'pubkeyhash'
                 },
@@ -367,7 +367,7 @@ describe('Transactions', function() {
             '3DQYCLG6rZdtV2Xw8y4YtozZjNHYoKsLuo': 45000
           },
           {
-            '12WvZmssxT85f81dD6wcmWznxbnFkEpNMS': 1993504
+            'LLjspzBi37N8uvhnPEvv3Y4ZAp9Xx2gghb': 1993504
           }
         ],
         'isRBF': false
