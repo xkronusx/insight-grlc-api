@@ -2,7 +2,7 @@
 var should = require('should');
 var sinon = require('sinon');
 var TxController = require('../lib/transactions');
-var bcoin = require('bcoin');
+var bcoin = require('lcoin');
 var _ = require('lodash');
 
 describe('Transactions', function() {

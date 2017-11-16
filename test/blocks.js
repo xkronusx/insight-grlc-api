@@ -3,7 +3,7 @@
 var should = require('should');
 var sinon = require('sinon');
 var BlockController = require('../lib/blocks');
-var bcoin = require('bcoin');
+var bcoin = require('lcoin');
 
 var blocks = require('./data/blocks.json');
 

@@ -18,17 +18,16 @@ var rimraf = require('rimraf');
 var mkdirp = require('mkdirp');
 var fs = require('fs');
 var async = require('async');
-var RPC = require('bitcoind-rpc');
+var RPC = require('litecoind-rpc');
 var http = require('http');
-var bitcore = require('bitcore-lib');
 var exec = require('child_process').exec;
 var net = require('net');
-var p2p = require('bitcore-p2p');
-var bitcore = require('bitcore-lib');
+var p2p = require('litecore-p2p');
+var bitcore = require('litecore-lib');
 var Networks = bitcore.Networks;
 var BlockHeader = bitcore.BlockHeader;
 var Block = bitcore.Block;
-var bcoin = require('bcoin');
+var bcoin = require('lcoin');
 var BcoinBlock = bcoin.block;
 var BcoinTx = bcoin.tx;
 
@@ -122,7 +121,7 @@ var TestBitcoind = function TestBitcoind() {
   self.start = function() {
     self._getBlocks();
     self._server = net.createServer(self._setOnDataHandlers.bind(self));
-    self._server.listen(18444, '127.0.0.1');
+    self._server.listen(19444, '127.0.0.1');
   };
 
   self._setOnDataHandlers = function(socket) {
@@ -215,7 +214,7 @@ var rpcConfig = {
   user: 'local',
   pass: 'localtest',
   host: '127.0.0.1',
-  port: 58332,
+  port: 59332,
   rejectUnauthorized: false
 };
 
@@ -223,9 +222,9 @@ var rpc1 = new RPC(rpcConfig);
 rpcConfig.port++;
 var rpc2 = new RPC(rpcConfig);
 var debug = true;
-var bitcoreDataDir = '/tmp/bitcore';
-var bitcoinDir1 = '/tmp/bitcoin1';
-var bitcoinDir2 = '/tmp/bitcoin2';
+var bitcoreDataDir = '/tmp/litecore';
+var bitcoinDir1 = '/tmp/litecoin1';
+var bitcoinDir2 = '/tmp/litecoin2';
 var bitcoinDataDirs = [ bitcoinDir1, bitcoinDir2 ];
 
 var bitcoin = {
@@ -237,19 +236,19 @@ var bitcoin = {
     rpcuser: 'local',
     rpcpassword: 'localtest',
     //printtoconsole: 1,
-    rpcport: 58332,
+    rpcport: 59332,
   },
   datadir: null,
-  exec: 'bitcoind', //if this isn't on your PATH, then provide the absolute path, e.g. /usr/local/bin/bitcoind
+  exec: 'litecoind', //if this isn't on your PATH, then provide the absolute path, e.g. /usr/local/bin/litecoind
   processes: []
 };
 
 var bitcore = {
   configFile: {
-    file: bitcoreDataDir + '/bitcore-node.json',
+    file: bitcoreDataDir + '/litecore-node.json',
     conf: {
       network: 'regtest',
-      port: 53001,
+      port: 54001,
       datadir: bitcoreDataDir,
       services: [
         'p2p',
@@ -267,7 +266,7 @@ var bitcore = {
       servicesConfig: {
         'p2p': {
           'peers': [
-            { 'ip': { 'v4': '127.0.0.1' }, port: 18444 }
+            { 'ip': { 'v4': '127.0.0.1' }, port: 19444 }
           ]
         },
         'insight-api': {
@@ -282,11 +281,11 @@ var bitcore = {
   httpOpts: {
     protocol: 'http:',
     hostname: 'localhost',
-    port: 53001,
+    port: 54001,
   },
   opts: { cwd: bitcoreDataDir },
   datadir: bitcoreDataDir,
-  exec: 'bitcored',  //if this isn't on your PATH, then provide the absolute path, e.g. /usr/local/bin/bitcored
+  exec: 'litecored',  //if this isn't on your PATH, then provide the absolute path, e.g. /usr/local/bin/litecored
   args: ['start'],
   process: null
 };
@@ -338,7 +337,7 @@ var waitForBlocksGenerated = function(callback) {
 
   var httpOpts = {
     hostname: 'localhost',
-    port: 53001,
+    port: 54001,
     path: '/api/status',
     method: 'GET',
     headers: {
@@ -930,8 +929,8 @@ describe('Reorg', function() {
 
         var httpOpts = {
           hostname: 'localhost',
-          port: 53001,
-          path: 'http://localhost:53001/api/block/' + reorgBlock,
+          port: 54001,
+          path: 'http://localhost:54001/api/block/' + reorgBlock,
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
@@ -993,8 +992,8 @@ describe('Reorg', function() {
           setTimeout(function() {
             var httpOpts = {
               hostname: 'localhost',
-              port: 53001,
-              path: 'http://localhost:53001/api/block/' + getReorgBlock().rhash(),
+              port: 54001,
+              path: 'http://localhost:54001/api/block/' + getReorgBlock().rhash(),
               method: 'GET',
               headers: {
                 'Content-Type': 'application/json'
@@ -1053,8 +1052,8 @@ describe('Reorg', function() {
             setTimeout(function() {
               var httpOpts = {
                 hostname: 'localhost',
-                port: 53001,
-                path: 'http://localhost:53001/api/block/' + getReorgBlock().rhash(),
+                port: 54001,
+                path: 'http://localhost:54001/api/block/' + getReorgBlock().rhash(),
                 method: 'GET',
                 headers: {
                   'Content-Type': 'application/json'
@@ -1100,8 +1099,8 @@ describe('Reorg', function() {
           setTimeout(function() {
             var httpOpts = {
               hostname: 'localhost',
-              port: 53001,
-              path: 'http://localhost:53001/api/block/' + getReorgBlock().rhash(),
+              port: 54001,
+              path: 'http://localhost:54001/api/block/' + getReorgBlock().rhash(),
               method: 'GET',
               headers: {
                 'Content-Type': 'application/json'
@@ -1143,8 +1142,8 @@ describe('Reorg', function() {
           setTimeout(function() {
             var httpOpts = {
               hostname: 'localhost',
-              port: 53001,
-              path: 'http://localhost:53001/api/block/' + fakeServer.blocks.getLastIndex().rhash(),
+              port: 54001,
+              path: 'http://localhost:54001/api/block/' + fakeServer.blocks.getLastIndex().rhash(),
               method: 'GET',
               headers: {
                 'Content-Type': 'application/json'

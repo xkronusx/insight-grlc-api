@@ -6,7 +6,7 @@ var rimraf = require('rimraf');
 var mkdirp = require('mkdirp');
 var fs = require('fs');
 var async = require('async');
-var RPC = require('bitcoind-rpc');
+var RPC = require('litecoind-rpc');
 var http = require('http');
 
 var rpc1Address;
@@ -20,7 +20,7 @@ var rpcConfig = {
   user: 'local',
   pass: 'localtest',
   host: '127.0.0.1',
-  port: 58332,
+  port: 59332,
   rejectUnauthorized: false
 };
 
@@ -28,8 +28,8 @@ var rpc1 = new RPC(rpcConfig);
 rpcConfig.port++;
 var rpc2 = new RPC(rpcConfig);
 var debug = true;
-var bitcoreDataDir = '/tmp/bitcore';
-var bitcoinDataDirs = ['/tmp/bitcoin1', '/tmp/bitcoin2'];
+var bitcoreDataDir = '/tmp/litecore';
+var bitcoinDataDirs = ['/tmp/litecoin1', '/tmp/litecoin2'];
 
 var bitcoin = {
   args: {
@@ -40,19 +40,19 @@ var bitcoin = {
     rpcuser: 'local',
     rpcpassword: 'localtest',
     //printtoconsole: 1
-    rpcport: 58332,
+    rpcport: 59332,
   },
   datadir: null,
-  exec: 'bitcoind', //if this isn't on your PATH, then provide the absolute path, e.g. /usr/local/bin/bitcoind
+  exec: 'litecoind', //if this isn't on your PATH, then provide the absolute path, e.g. /usr/local/bin/litecoind
   processes: []
 };
 
 var bitcore = {
   configFile: {
-    file: bitcoreDataDir + '/bitcore-node.json',
+    file: bitcoreDataDir + '/litecore-node.json',
     conf: {
       network: 'regtest',
-      port: 53001,
+      port: 54001,
       datadir: bitcoreDataDir,
       services: [
         'p2p',
@@ -70,7 +70,7 @@ var bitcore = {
       servicesConfig: {
         'p2p': {
           'peers': [
-            { 'ip': { 'v4': '127.0.0.1' }, port: 18444 }
+            { 'ip': { 'v4': '127.0.0.1' }, port: 19444 }
           ]
         },
         'fee': {
@@ -79,7 +79,7 @@ var bitcore = {
             'pass': 'localtest',
             'host': 'localhost',
             'protocol': 'http',
-            'port': 58332
+            'port': 59332
           }
         },
         'insight-api': {
@@ -91,11 +91,11 @@ var bitcore = {
   httpOpts: {
     protocol: 'http:',
     hostname: 'localhost',
-    port: 53001,
+    port: 54001,
   },
   opts: { cwd: bitcoreDataDir },
   datadir: bitcoreDataDir,
-  exec: 'bitcored',
+  exec: 'litecored',
   args: ['start'],
   process: null
 };
@@ -341,7 +341,7 @@ describe('Status', function() {
 
   it('should get status: /status', function(done) {
 
-    var request = http.request('http://localhost:53001/api/status', function(res) {
+    var request = http.request('http://localhost:54001/api/status', function(res) {
 
       var error;
       if (res.statusCode !== 200 && res.statusCode !== 201) {
@@ -381,7 +381,7 @@ describe('Status', function() {
 
   it('should get status: /sync', function(done) {
 
-    var request = http.request('http://localhost:53001/api/sync', function(res) {
+    var request = http.request('http://localhost:54001/api/sync', function(res) {
 
       var error;
       if (res.statusCode !== 200 && res.statusCode !== 201) {
@@ -422,7 +422,7 @@ describe('Status', function() {
 
   it('should get peer: /peer', function(done) {
 
-    var request = http.request('http://localhost:53001/api/peer', function(res) {
+    var request = http.request('http://localhost:54001/api/peer', function(res) {
 
       var error;
       if (res.statusCode !== 200 && res.statusCode !== 201) {
@@ -463,7 +463,7 @@ describe('Status', function() {
 
   it('should get version: /version', function(done) {
 
-    var request = http.request('http://localhost:53001/api/version', function(res) {
+    var request = http.request('http://localhost:54001/api/version', function(res) {
 
       var error;
       if (res.statusCode !== 200 && res.statusCode !== 201) {
@@ -506,7 +506,7 @@ describe('Status', function() {
 
   it('should estimate fee: /estimateFee', function(done) {
 
-    var request = http.request('http://localhost:53001/api/utils/estimateFee', function(res) {
+    var request = http.request('http://localhost:54001/api/utils/estimateFee', function(res) {
 
       var error;
       if (res.statusCode !== 200 && res.statusCode !== 201) {

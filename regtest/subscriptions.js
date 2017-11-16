@@ -6,11 +6,10 @@ var rimraf = require('rimraf');
 var mkdirp = require('mkdirp');
 var fs = require('fs');
 var async = require('async');
-var RPC = require('bitcoind-rpc');
+var RPC = require('litecoind-rpc');
 var http = require('http');
-var bitcore = require('bitcore-lib');
 var exec = require('child_process').exec;
-var bitcore = require('bitcore-lib');
+var bitcore = require('litecore-lib');
 var Block = bitcore.Block;
 var PrivateKey = bitcore.PrivateKey;
 var Transaction = bitcore.Transaction;
@@ -33,14 +32,14 @@ var rpcConfig = {
   user: 'local',
   pass: 'localtest',
   host: '127.0.0.1',
-  port: 58332,
+  port: 59332,
   rejectUnauthorized: false
 };
 
 var rpc = new RPC(rpcConfig);
 var debug = true;
-var bitcoreDataDir = '/tmp/bitcore';
-var bitcoinDir = '/tmp/bitcoin';
+var bitcoreDataDir = '/tmp/litecore';
+var bitcoinDir = '/tmp/litecoin';
 var bitcoinDataDirs = [ bitcoinDir ];
 var blocks= [];
 var pks = [];
@@ -58,19 +57,19 @@ var bitcoin = {
     rpcuser: 'local',
     rpcpassword: 'localtest',
     //printtoconsole: 1,
-    rpcport: 58332,
+    rpcport: 59332,
   },
   datadir: null,
-  exec: 'bitcoind', //if this isn't on your PATH, then provide the absolute path, e.g. /usr/local/bin/bitcoind
+  exec: 'litecoind', //if this isn't on your PATH, then provide the absolute path, e.g. /usr/local/bin/litecoind
   processes: []
 };
 
 var bitcore = {
   configFile: {
-    file: bitcoreDataDir + '/bitcore-node.json',
+    file: bitcoreDataDir + '/litecore-node.json',
     conf: {
       network: 'regtest',
-      port: 53001,
+      port: 54001,
       datadir: bitcoreDataDir,
       services: [
         'p2p',
@@ -88,7 +87,7 @@ var bitcore = {
       servicesConfig: {
         'p2p': {
           'peers': [
-            { 'ip': { 'v4': '127.0.0.1' }, port: 18444 }
+            { 'ip': { 'v4': '127.0.0.1' }, port: 19444 }
           ]
         },
         'insight-api': {
@@ -103,11 +102,11 @@ var bitcore = {
   httpOpts: {
     protocol: 'http:',
     hostname: 'localhost',
-    port: 53001,
+    port: 54001,
   },
   opts: { cwd: bitcoreDataDir },
   datadir: bitcoreDataDir,
-  exec: 'bitcored',  //if this isn't on your PATH, then provide the absolute path, e.g. /usr/local/bin/bitcored
+  exec: 'litecored',  //if this isn't on your PATH, then provide the absolute path, e.g. /usr/local/bin/litecored
   args: ['start'],
   process: null
 };
@@ -159,7 +158,7 @@ var waitForBlocksGenerated = function(callback) {
 
   var httpOpts = {
     hostname: 'localhost',
-    port: 53001,
+    port: 54001,
     path: '/api/status',
     method: 'GET',
     headers: {
@@ -374,8 +373,8 @@ var getFirstIncomingFunds = function(callback) {
 
       var httpOpts = {
         hostname: 'localhost',
-        port: 53001,
-        path: 'http://localhost:53001/api/tx/send',
+        port: 54001,
+        path: 'http://localhost:54001/api/tx/send',
         method: 'POST',
         body: body,
         headers: {
@@ -426,8 +425,8 @@ var sendTx = function(callback) {
 
   var httpOpts = {
     hostname: 'localhost',
-    port: 53001,
-    path: 'http://localhost:53001/api/tx/send',
+    port: 54001,
+    path: 'http://localhost:54001/api/tx/send',
     method: 'POST',
     body: body,
     headers: {
@@ -505,7 +504,7 @@ describe('Subscriptions', function() {
 
   it('should be able to be able to GET a transaction after receiving a websocket notification that a tx has arrived in the mempool.', function(done) {
 
-    var socket = io('ws://localhost:53001', {
+    var socket = io('ws://localhost:54001', {
       transports: [ 'websocket' ]
     });
 
@@ -518,7 +517,7 @@ describe('Subscriptions', function() {
 
       var httpOpts = {
         hostname: 'localhost',
-        port: 53001,
+        port: 54001,
         path: '/api/tx/' + txs[0].hash,
         method: 'GET',
         headers: {
@@ -553,7 +552,7 @@ describe('Subscriptions', function() {
 
     var blockHash;
 
-    var socket = io('ws://localhost:53001', {
+    var socket = io('ws://localhost:54001', {
       transports: [ 'websocket' ]
     });
 
@@ -566,7 +565,7 @@ describe('Subscriptions', function() {
 
       var httpOpts = {
         hostname: 'localhost',
-        port: 53001,
+        port: 54001,
         path: '/api/block/' + msg.hash,
         method: 'GET',
         headers: {
