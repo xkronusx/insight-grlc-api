@@ -1,8 +1,8 @@
 {
-  "name": "insight-lite-api",
-  "description": "A Litecoin blockchain REST and web socket API service for Litecore Node.",
+  "name": "insight-grlc-api",
+  "description": "A Garlicoin blockchain REST and web socket API service for Garlicore Node.",
   "version": "0.4.4",
-  "repository": "git://github.com/litecoin-project/insight-lite-api.git",
+  "repository": "git://github.com/garlicoin-project/insight-grlc-api.git",
   "contributors": [
     {
       "name": "Gustavo Cortez",
@@ -38,15 +38,15 @@
     }
   ],
   "bugs": {
-    "url": "https://github.com/litecoin-project/insight-lite-api/issues"
+    "url": "https://github.com/garlicoin-project/insight-lite-api/issues"
   },
-  "homepage": "https://github.com/litecoin-project/insight-lite-api",
+  "homepage": "https://github.com/garlicoin-project/insight-lite-api",
   "license": "MIT",
   "keywords": [
     "insight",
     "insight api",
     "blockchain",
-    "litecoin api",
+    "garliccoin api",
     "blockchain api",
     "json",
     "litecore"
@@ -61,8 +61,8 @@
   "bitcoreNode": "lib",
   "dependencies": {
     "async": "*",
-    "litecore-lib": "^0.13.22",
-    "litecore-message": "^1.0.5",
+    "garlicore-lib": "garlicoin-project/garlicore-lib#segwit",
+    "garlicore-message": "garlicoin-project/garlicore-message",
     "body-parser": "^1.13.3",
     "compression": "^1.6.1",
     "lodash": "^2.4.1",
