@@ -1,8 +1,15 @@
-[{
+[
+	{
 		"poolName": "WildGarlic",
 		"url": "https://wildgarlic.fun/",
 		"searchStrings": [
 			"WildGarlic"
+		]
+	}, {
+		"poolName": "FreshGRLC.net",
+		"url": "https://freshgrlc.net/",
+		"searchStrings": [
+			"/FreshGRLC.net/"
 		]
 	}
 ]
