@@ -11,5 +11,11 @@
 		"searchStrings": [
 			"/FreshGRLC.net/"
 		]
+	}, {
+		"poolName": "Bakery",
+		"url": "https://grlc-bakery.fun/",
+		"searchStrings": [
+			"/Bakery/"
+		]
 	}
 ]
