@@ -17,5 +17,12 @@
 		"searchStrings": [
 			"/Bakery/"
 		]
+	}, {
+		"poolName": "Garlic Factory",
+		"url": "https://garlic-factory.fun/",
+		"searchStrings": [
+			"/Garlic Factory/"
+		]
 	}
+
 ]
