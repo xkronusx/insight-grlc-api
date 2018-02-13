@@ -18,6 +18,13 @@
 			"/Bakery/"
 		]
 	}, {
+		"poolName": "Garlicpool.org",
+		"url": "https://www.garlicpool.org/",
+		"searchStrings": [
+			"/Garlicpool EU/",
+			"/Garlicpool US/"
+		]
+	}, {
 		"poolName": "Garlic Factory",
 		"url": "https://garlic-factory.fun/",
 		"searchStrings": [
